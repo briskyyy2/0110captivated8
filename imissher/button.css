@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  -webkit-font-smoothing: antialiased;
+  background-color: #222;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 100;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: white;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+  border-radius: 50px;
+}
+
+.button:hover {
+  background-color: #90feb5;
+  color: #fff;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button--bubble {
+  position: relative;
+  z-index: 2;
+  color: white;
+  background: none;
+}
+
+.button--bubble:hover {
+  background: none;
+}
+
+.button--bubble:hover + .button--bubble__effect-container .circle {
+  background: #6cc48c;
+}
+
+.button--bubble:hover + .button--bubble__effect-container .button {
+  background: #6cc48c;
+}
+
+.button--bubble:active + .button--bubble__effect-container {
+  transform: scale(0.95);
+}
+
+.button--bubble__container {
+  position: relative;
+  display: inline-block;
+}
+
+.button--bubble__container .effect-button {
+  position: absolute;
+  width: 50%;
+  height: 25%;
+  top: 50%;
+  left: 25%;
+  z-index: 1;
+  transform: translateY(-50%);
+  background: #222;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 400%;
+  top: -150%;
+  left: -50%;
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+}
+
+.button--bubble__effect-container .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  background: #222;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container .circle.top-left {
+  top: 40%;
+  left: 27%;
+}
+
+.button--bubble__effect-container .circle.bottom-right {
+  bottom: 40%;
+  right: 27%;
+}
+
+.goo {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.button--bubble__container {
+  position: relative;
+  display: inline-block;
+}
+
+#new-button-container {
+  position: fixed;
+  bottom: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.new-button {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+#fast-forward-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#fast-forward-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#fast-forward-container.slide-from-left {
+  transform: translateX(-50px);
+}
+
+#fast-forward-button {
+  position: relative;
+  background-color: rgba(34, 34, 34, 0.8);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#fast-forward-button:hover {
+  background-color: rgba(34, 34, 34, 1);
+}
+
+/* Fast Forward Indicator Animation */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+#pure-ff-icon {
+  animation: blink 1s infinite;
+  font-size: 32px;
+}
+
+#ff-indicator {
+  animation: blink 1s infinite;
+}

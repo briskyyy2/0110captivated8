@@ -1,0 +1,14 @@
+# Netlify configuration file
+[build]
+  publish = "."
+
+# Redirects and headers for the site
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    
+    # Important for Safari
+    Cache-Control = "public, max-age=3600"

@@ -1,0 +1,144 @@
+/* Safari-specific fixes for button animation */
+
+/* Hardware acceleration for smoother animations */
+.button--bubble,
+.button--bubble__effect-container,
+.button--bubble__container,
+.circle,
+.effect-button {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  will-change: transform;
+}
+
+/* Ensure transitions work properly in Safari */
+.button {
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+.button--bubble__container .effect-button {
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: background 0.1s ease-out;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container {
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+.button--bubble__effect-container .circle {
+  -webkit-transition: background 0.1s ease-out;
+  transition: background 0.1s ease-out;
+}
+
+/* Safari-specific fixes for active states */
+.button--bubble:active + .button--bubble__effect-container {
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.button:active {
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+/* Fix hover state for Safari */
+@media not all and (pointer: coarse) {
+  .button--bubble:hover + .button--bubble__effect-container .circle,
+  .button--bubble:hover + .button--bubble__effect-container .button {
+    background: #6cc48c;
+  }
+  
+  .button:hover {
+    background-color: #90feb5;
+  }
+  
+  .button--bubble:hover {
+    background: none;
+  }
+}
+
+/* Ensure SVG filters work properly in Safari */
+.goo {
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+}
+
+/* Optimize animation performance */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .button--bubble__effect-container {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+}
+
+/* Fix for bottom-right bubbles in Safari */
+.button--bubble__effect-container .circle.bottom-right {
+  -webkit-transform-origin: bottom right;
+  transform-origin: bottom right;
+  
+  /* Overrides for Safari to ensure bubbles are visible */
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-will-change: opacity, transform;
+  will-change: opacity, transform;
+}
+
+/* Force hardware acceleration for Safari bubbles */
+.safari-browser .button--bubble__effect-container .circle {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Enhanced fixes for bottom-right bubbles in Safari */
+.safari-browser .button--bubble__effect-container .circle.bottom-right {
+  /* Make sure Safari renders bottom-right bubbles */
+  bottom: 0 !important;
+  right: 0 !important;
+  opacity: 1;
+  /* Explicit positioning to avoid Safari rendering issues */
+  position: absolute;
+  display: block;
+  visibility: visible !important;
+}
+
+/* Force Safari to show the bubbles */
+.safari-browser .button--bubble:hover + .button--bubble__effect-container .circle.bottom-right {
+  -webkit-animation: none;
+  animation: none;
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  opacity: 1;
+  background: #6cc48c;
+}
+
+/* Make sure the bubble container is visible in Safari */
+.safari-browser .button--bubble__effect-container {
+  overflow: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix for Safari's SVG filter handling */
+.safari-browser .goo {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Force opacity to be properly rendered in Safari */
+.safari-browser .button--bubble__effect-container .circle {
+  opacity: 1;
+}
+
+/* Ensure Safari properly processes bubbles on hover */
+.safari-browser .button--bubble:hover + .button--bubble__effect-container .circle {
+  will-change: transform, scale, opacity;
+}

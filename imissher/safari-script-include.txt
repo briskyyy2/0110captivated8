@@ -1,0 +1,1 @@
+<!-- Safari Detection --><script src="safari-detect.js"></script>

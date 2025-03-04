@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'Autography';
+    src: url('./Autography.otf') format('opentype'),
+         url('./Autography.otf') format('truetype'); /* Add truetype format for better Safari support */
+    font-display: block;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.handwriting-container {
+    position: fixed;
+    top: 10.5%; /* Moved up 1% from 11.5% to 10.5% */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000; /* Increased to make sure it's above everything */
+    pointer-events: none;
+    display: none; /* Initially hidden */
+    width: 90%;
+    max-width: 800px;
+    opacity: 1; /* Start with full opacity */
+    transition: opacity 0.5s ease; /* Smooth fade in */
+}
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* Start with full opacity */
+    font-family: 'Autography', cursive, sans-serif; /* Add explicit fallback fonts */
+}
+
+.text-animation {
+    --interval: 5s; /* Changed from 6s to 5s */
+    font-size: 95px; /* Slightly increased size for better visibility */
+    font-family: 'Autography', cursive, sans-serif; /* Add explicit fallback fonts */
+    color: white; /* White base color for better clarity */
+    text-shadow: 
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 3px var(--color1),
+        0 0 6px var(--color2), /* Restored from 5px to 6px */
+        0 0 10px var(--color3), /* Restored from 8px to 10px */
+        0 0 18px var(--color4); /* Restored from 14px to 18px */
+    will-change: filter, color;
+    filter: saturate(50%) brightness(1.0); /* Restored from 45%/0.95 to 50%/1.0 */
+    --color1: #ffcbe5;
+    --color2: #ff9ff3;
+    --color3: #fe75fe;
+    --color4: #d84aaa; /* Less vivid magenta */
+    font-weight: normal; /* Reduced from 600 to normal for less boldness */
+    letter-spacing: 3px; /* Increased letter spacing for readability */
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.text-animation.complete-typing {
+    animation: flicker steps(1) var(--interval) 0s infinite; /* Using steps(1) for instant transitions */
+}
+
+.text-animation span {
+    display: inline-block;
+    opacity: 0;
+    color: white; /* Matching the main text color */
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.text-animation .space {
+    width: 0.5em; /* Explicit width for space characters */
+}
+
+.text-animation.secondary-flicker {
+    animation: none;
+    filter: brightness(0.6) saturate(20%);
+    text-shadow: 
+        0 0 1px #fff,
+        0 0 1px #fff,
+        0 0 1px var(--color1),
+        0 0 2px var(--color2),
+        0 0 3px var(--color3),
+        0 0 4px var(--color4);
+    transition: text-shadow 0.15s ease-in-out, filter 0.15s ease-in-out; /* Smoother transitions */
+}
+
+.text-animation.buzz-flicker {
+    animation: buzz-flicker-animation 0.8s linear;
+}
+
+@keyframes buzz-flicker-animation {
+    0%, 100% {
+        opacity: 1;
+        filter: saturate(50%) brightness(1.0);
+        text-shadow: 
+            0 0 6px #fff,
+            0 0 10px #fff,
+            0 0 8px var(--color1),
+            0 0 12px var(--color2),
+            0 0 18px var(--color3),
+            0 0 22px var(--color4);
+    }
+    10%, 14% {
+        opacity: 0.7;
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    25%, 29% {
+        opacity: 0.65;
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    38%, 42% {
+        opacity: 0.8;
+        filter: saturate(30%) brightness(0.75);
+        text-shadow: 
+            0 0 2px #fff,
+            0 0 3px #fff,
+            0 0 3px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 10px var(--color4);
+    }
+    50%, 54% {
+        opacity: 0.7;
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    65%, 69% {
+        opacity: 0.8;
+        filter: saturate(30%) brightness(0.75);
+        text-shadow: 
+            0 0 2px #fff,
+            0 0 3px #fff,
+            0 0 3px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 10px var(--color4);
+    }
+    80%, 84% {
+        opacity: 0.65;
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+}
+
+.text-animation,
+.text-animation.complete-typing {
+    will-change: filter, text-shadow;
+    transition: text-shadow 0.15s ease-in-out, filter 0.15s ease-in-out; /* Smoother transitions */
+}
+
+/* Neon flickering effect - smoother transitions */
+@keyframes flicker {
+    0%, 93%, 100% {  /* Default state (ON) for most of the time */
+        color: white;
+        filter: saturate(50%) brightness(1.0); /* Restored brightness and saturation */
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px var(--color1),
+            0 0 6px var(--color2), /* Restored from 5px to 6px */
+            0 0 10px var(--color3), /* Restored from 8px to 10px */
+            0 0 18px var(--color4); /* Restored from 14px to 18px */
+    }
+    93.25% { /* Transition phase */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+    93.5% {  /* OFF - reduced to 20% glow (from 40%) */
+        color: rgba(255, 255, 255, 0.7);
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    93.75% { /* Transition phase */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+    94% {  /* ON */
+        color: white;
+        filter: saturate(50%) brightness(1.0); /* Restored brightness and saturation */
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px var(--color1),
+            0 0 6px var(--color2), /* Restored from 5px to 6px */
+            0 0 10px var(--color3), /* Restored from 8px to 10px */
+            0 0 18px var(--color4); /* Restored from 14px to 18px */
+    }
+    94.25% { /* Transition phase */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+    94.5% {  /* OFF - reduced to 20% glow (from 40%) */
+        color: rgba(255, 255, 255, 0.7);
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    94.75% { /* Transition phase */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+    95% {  /* ON BRIGHT */
+        color: white;
+        filter: saturate(70%) brightness(1.2); /* Restored from 65%/1.15 to 70%/1.2 */
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 4px var(--color1),
+            0 0 8px var(--color2), /* Restored from 7px to 8px */
+            0 0 12px var(--color3), /* Restored from 10px to 12px */
+            0 0 22px var(--color4); /* Restored from 18px to 22px */
+    }
+    95.25% { /* Transition phase */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+    95.5% {  /* OFF - reduced to 20% glow (from 40%) */
+        color: rgba(255, 255, 255, 0.7);
+        filter: saturate(20%) brightness(0.6);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 1px #fff,
+            0 0 1px var(--color1),
+            0 0 2px var(--color2),
+            0 0 3px var(--color3),
+            0 0 4px var(--color4);
+    }
+    95.75% { /* Transition phase back to normal */
+        color: rgba(255, 255, 255, 0.92);
+        filter: saturate(45%) brightness(0.92);
+        text-shadow: 
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 2.5px var(--color1),
+            0 0 5px var(--color2),
+            0 0 8px var(--color3),
+            0 0 14px var(--color4);
+    }
+}
+
+/* When all letters have appeared, apply the neon glow effect */
+.glowing-text {
+    text-shadow: 
+        0 0 1px #fff, /* White core for clarity */
+        0 0 2px #fff, /* Double white core */
+        0 0 4px var(--color1),
+        0 0 8px var(--color2), /* Restored from 7px to 8px */
+        0 0 15px var(--color3), /* Restored from 12px to 15px */
+        0 0 30px var(--color4); /* Restored from 20px to 30px */
+    will-change: filter, color;
+    animation: flicker linear var(--interval) 0s infinite; /* Keeping the linear for smooth transitions */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance:none) {
+  /* Safari handles font rendering differently */
+  .text-animation {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Better text shadow rendering in Safari */
+  .neon {
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Override animation timings for Safari */
+  @-webkit-keyframes neonspark {
+    0%, 100% {
+      text-shadow: var(--glow);
+    }
+    50% {
+      text-shadow: var(--glow-bright);
+    }
+  }
+  
+  /* Fix animation name for Safari */
+  .text-animation.animate {
+    -webkit-animation-name: textanimate;
+    animation-name: textanimate;
+  }
+  
+  /* Add prefix for Safari */
+  @-webkit-keyframes textanimate {
+    from {
+      width: 0;
+      white-space: nowrap;
+    }
+    to {
+      width: 100%;
+      white-space: nowrap;
+    }
+  }
+}

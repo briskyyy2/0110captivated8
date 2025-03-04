@@ -1,0 +1,55 @@
+/* Safari Compatibility CSS */
+
+/* WebKit prefixes for animations and transitions */
+@keyframes heart {
+  0%, 17.5% { font-size: 0; }
+}
+
+@-webkit-keyframes heart {
+  0%, 17.5% { font-size: 0; }
+}
+
+/* Safari-specific fixes */
+[id=toggle-heart]:checked + label {
+  -webkit-animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+  animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+/* Fix transition issues in Safari */
+.color-transition {
+  -webkit-transition: 0.8s ease;
+  transition: 0.8s ease;
+}
+
+/* Hardware acceleration for smoother animations */
+.button, .button--bubble__effect-container, .cursor, #typewriter, #secondLine {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Safari CSS cursor animation fixes */
+@-webkit-keyframes cursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Fix for typewriter animation in Safari */
+#typewriter, #secondLine {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix for fade animations in Safari */
+.fadeOut {
+  -webkit-animation: fadeOut 1.5s forwards;
+  animation: fadeOut 1.5s forwards;
+}
+
+@-webkit-keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

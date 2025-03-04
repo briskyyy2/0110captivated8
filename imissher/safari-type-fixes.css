@@ -1,0 +1,43 @@
+/* Safari-specific fixes for typewriter animation text shifting */
+.safari-browser #typewriter-container {
+  /* Prevent layout shifts by setting a fixed height */
+  min-height: 150px;
+  /* Fix Safari text rendering issues */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.safari-browser #typewriter,
+.safari-browser #secondLine,
+.safari-browser .small-text {
+  /* Prevent text shifts by using hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Set text position with fixed coordinates */
+  position: relative;
+  /* Make Safari use the same text rendering as other browsers */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Apply specific positioning to prevent shifts */
+.safari-browser .small-text {
+  margin-top: 12px;
+  /* Force height to prevent shifts */
+  min-height: 20px;
+}
+
+/* Fix for "(hope..." line causing shifts */
+.safari-browser #typewriter-container:has(.small-text) #secondLine {
+  /* Lock the position when hope text appears */
+  position: relative;
+  top: 0;
+}
+
+/* Safari has different text metrics calculation */
+.safari-browser .highlight {
+  /* Adjust highlighted text metrics for Safari */
+  display: inline-block;
+  position: relative;
+}

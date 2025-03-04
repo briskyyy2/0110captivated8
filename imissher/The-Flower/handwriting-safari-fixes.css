@@ -1,0 +1,62 @@
+/* Safari-specific fixes for handwriting animation */
+
+/* Safari handles font rendering differently */
+.text-animation {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Better text shadow rendering in Safari */
+.neon {
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
+}
+
+/* Override animation timings for Safari */
+@-webkit-keyframes neonspark {
+  0%, 100% {
+    text-shadow: var(--glow);
+  }
+  50% {
+    text-shadow: var(--glow-bright);
+  }
+}
+
+/* Fix animation name for Safari */
+.text-animation.animate {
+  -webkit-animation-name: textanimate;
+  animation-name: textanimate;
+}
+
+/* Add prefix for Safari */
+@-webkit-keyframes textanimate {
+  from {
+    width: 0;
+    white-space: nowrap;
+  }
+  to {
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+/* Improve performance for text animation in Safari */
+.text-container {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Fix for neon text in Safari */
+.text-animation {
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* Fix for letter spacing in Safari */
+.text-animation {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Improve text clarity in Safari */
+.text-container {
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+}

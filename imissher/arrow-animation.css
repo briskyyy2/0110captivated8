@@ -1,0 +1,43 @@
+.arrow-animation {
+    position: fixed;
+    bottom: 20px;
+    right: 80px; /* Moved slightly to the right (from 100px to 80px) */
+    transform-origin: center;
+    transform: rotate(270deg) scale(0.7); /* Combined rotation and scaling */
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+.arrow-animation span {
+    display: block;
+    width: 1.2vw; /* Smaller width */
+    height: 1.2vw; /* Smaller height */
+    border-bottom: 5px solid #e2264d; /* Heart color from the theme */
+    border-right: 5px solid #e2264d; /* Heart color from the theme */
+    transform: rotate(45deg);
+    margin: -8px; /* Smaller margin */
+    animation: animate-arrow 0.8s infinite;
+}
+
+.arrow-animation span:nth-child(2) {
+    animation-delay: -0.08s;
+}
+
+.arrow-animation span:nth-child(3) {
+    animation-delay: -0.16s;
+}
+
+@keyframes animate-arrow {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-15px, -15px); /* Smaller translation */
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(15px, 15px); /* Smaller translation */
+    }
+}

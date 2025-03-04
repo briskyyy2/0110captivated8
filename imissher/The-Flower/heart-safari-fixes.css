@@ -1,0 +1,122 @@
+/**
+ * Safari-specific fixes for heart shape and animation
+ * This file is only loaded when Safari is detected
+ */
+
+/* Use a different heart shape technique for Safari */
+.safari .heart {
+  background-color: transparent !important;
+  background-image: none !important;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  transform-origin: center;
+}
+
+/* Create a better heart shape for Safari using pseudo-elements */
+.safari .heart:before,
+.safari .heart:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 15px;
+  height: 24px;
+  border-radius: 15px 15px 0 0;
+  background: #D53A33; /* Match the heart color */
+}
+
+.safari .heart:before {
+  left: 15px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.safari .heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* Adjust animation for Safari */
+.safari .heart {
+  animation-name: heartbeat-safari !important;
+  animation-duration: 1s !important;
+  animation-timing-function: ease !important;
+  animation-iteration-count: infinite !important;
+  -webkit-animation-name: heartbeat-safari !important;
+  -webkit-animation-duration: 1s !important;
+  -webkit-animation-timing-function: ease !important;
+  -webkit-animation-iteration-count: infinite !important;
+  will-change: transform, opacity;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Safari-specific heartbeat animation */
+@-webkit-keyframes heartbeat-safari {
+  0% {
+    -webkit-transform: scale(0.8) translateZ(0);
+    transform: scale(0.8) translateZ(0);
+  }
+  25% {
+    -webkit-transform: scale(1.0) translateZ(0);
+    transform: scale(1.0) translateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(0.8) translateZ(0);
+    transform: scale(0.8) translateZ(0);
+  }
+  75% {
+    -webkit-transform: scale(1.0) translateZ(0);
+    transform: scale(1.0) translateZ(0);
+  }
+  100% {
+    -webkit-transform: scale(0.8) translateZ(0);
+    transform: scale(0.8) translateZ(0);
+  }
+}
+
+@keyframes heartbeat-safari {
+  0% {
+    transform: scale(0.8) translateZ(0);
+  }
+  25% {
+    transform: scale(1.0) translateZ(0);
+  }
+  50% {
+    transform: scale(0.8) translateZ(0);
+  }
+  75% {
+    transform: scale(1.0) translateZ(0);
+  }
+  100% {
+    transform: scale(0.8) translateZ(0);
+  }
+}
+
+/* Ensure heart glowing and colors work on Safari */
+.safari .glow {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8),
+              0 0 20px rgba(255, 0, 0, 0.6),
+              0 0 30px rgba(255, 0, 0, 0.4),
+              0 0 40px rgba(255, 0, 0, 0.2),
+              0 0 50px rgba(255, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 10px rgba(255, 0, 0, 0.8),
+                      0 0 20px rgba(255, 0, 0, 0.6),
+                      0 0 30px rgba(255, 0, 0, 0.4),
+                      0 0 40px rgba(255, 0, 0, 0.2),
+                      0 0 50px rgba(255, 0, 0, 0.1);
+}
+
+/* Improve Safari rendering for heart bubbles */
+.safari .bubbles {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.safari .bubble {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}

@@ -1,0 +1,20 @@
+#ff-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  font-size: 24px;
+  display: none;
+  animation: blink 1s infinite;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 15px;
+  border-radius: 50px;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}

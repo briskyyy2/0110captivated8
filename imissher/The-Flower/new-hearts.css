@@ -1,0 +1,44 @@
+/* New Heart Fireworks CSS */
+.bubbles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.85;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  animation: love-burst 3s ease forwards;
+  transform: translate(0, 0.65em) scale(0);
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5) rotate(45deg);
+  fill: transparent;
+  animation: love 3s ease forwards;
+}
+
+@keyframes love-burst {
+  50%, 100% {
+    box-shadow: inset 0 0 0 0 rgb(255, 182, 193);
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes love {
+  50%, 100% {
+    fill: rgb(255, 102, 102);
+    opacity: 0.85;
+  }
+}

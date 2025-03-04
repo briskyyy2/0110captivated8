@@ -1,0 +1,55 @@
+/* Safari-specific fixes for the Flower animation */
+
+/* Add Safari-specific styles */
+.safari .handwriting-container {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Fix for text animation in Safari */
+.safari .text-animation {
+  -webkit-animation-delay: var(--delay, 0s);
+  animation-delay: var(--delay, 0s);
+  -webkit-animation-duration: var(--duration, 2s);
+  animation-duration: var(--duration, 2s);
+}
+
+/* Neon flicker effect for Safari */
+.safari .neon {
+  -webkit-animation: neon 1.5s infinite alternate;
+  animation: neon 1.5s infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  0%, 100% {
+    text-shadow: var(--glow);
+  }
+  90% {
+    text-shadow: none;
+  }
+}
+
+/* Fix fireworks animation for Safari */
+.safari #fireworksCanvas {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Ensure better font rendering on Safari */
+.safari .text-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure animations run smoothly in Safari */
+.safari .flower, 
+.safari .flower__leaf, 
+.safari .flower__light {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}

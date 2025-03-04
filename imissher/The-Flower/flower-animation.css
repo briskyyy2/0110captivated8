@@ -1,0 +1,18 @@
+/* CSS to control flower blooming animation */
+
+/* When flowers have not-loaded class, pause all animations inside it */
+.flowers.not-loaded * {
+  animation-play-state: paused !important;
+}
+
+/* Visibility transitions for flower container */
+.flowers {
+  transition: opacity 0.8s ease;
+}
+
+/* Ensure the night background is always visible */
+.night {
+  animation-play-state: running !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
